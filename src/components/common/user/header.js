@@ -4,46 +4,60 @@ import React, { useEffect, useState } from 'react';
 export default function Header() {
 
     return (
-        <div className="header-area">
-        <div className="container">
-            <div className="row">
-                <div className="col-md-8">
-                    <div className="user-menu">
-                        <ul>
-                            <li><a href="#"><i className="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i className="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i className="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout.html"><i className="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="#"><i className="fa fa-user"></i> Login</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div className="col-md-4">
-                    <div className="header-right">
-                        <ul className="list-unstyled list-inline">
-                            <li className="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" className="dropdown-toggle" href="#"><span className="key">currency :</span><span className="value">USD </span><b className="caret"></b></a>
-                                <ul className="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">INR</a></li>
-                                    <li><a href="#">GBP</a></li>
-                                </ul>
-                            </li>
-
-                            <li className="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" className="dropdown-toggle" href="#"><span className="key">language :</span><span className="value">English </span><b className="caret"></b></a>
-                                <ul className="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <header className="header_area">
+        <div className="main_menu">
+          <nav className="navbar navbar-expand-lg navbar-light">
+            <div className="container">
+              <a className="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></img></a>
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </button>
+              <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
+                <ul className="nav navbar-nav menu_nav ml-auto mr-auto">
+                  <li className="nav-item active"><a className="nav-link" href="index.html">Home</a></li>
+                  <li className="nav-item submenu dropdown">
+                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false">Shop</a>
+                    <ul className="dropdown-menu">
+                      <li className="nav-item"><a className="nav-link" href="category.html">Shop Category</a></li>
+                      <li className="nav-item"><a className="nav-link" href="single-product.html">Product Details</a></li>
+                      <li className="nav-item"><a className="nav-link" href="checkout.html">Product Checkout</a></li>
+                      <li className="nav-item"><a className="nav-link" href="confirmation.html">Confirmation</a></li>
+                      <li className="nav-item"><a className="nav-link" href="cart.html">Shopping Cart</a></li>
+                    </ul>
+                                </li>
+                  <li className="nav-item submenu dropdown">
+                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false">Blog</a>
+                    <ul className="dropdown-menu">
+                      <li className="nav-item"><a className="nav-link" href="blog.html">Blog</a></li>
+                      <li className="nav-item"><a className="nav-link" href="single-blog.html">Blog Details</a></li>
+                    </ul>
+                                </li>
+                                <li className="nav-item submenu dropdown">
+                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false">Pages</a>
+                    <ul className="dropdown-menu">
+                      <li className="nav-item"><a className="nav-link" href="login.html">Login</a></li>
+                      <li className="nav-item"><a className="nav-link" href="register.html">Register</a></li>
+                      <li className="nav-item"><a className="nav-link" href="tracking-order.html">Tracking</a></li>
+                    </ul>
+                  </li>
+                  <li className="nav-item"><a className="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+    
+                <ul className="nav-shop">
+                  <li className="nav-item"><button><i className="ti-search"></i></button></li>
+                  <li className="nav-item"><button><i className="ti-shopping-cart"></i><span className="nav-shop__circle">3</span></button> </li>
+                  <li className="nav-item"><a className="button button-header" href="#">Buy Now</a></li>
+                </ul>
+              </div>
             </div>
+          </nav>
         </div>
-        </div> 
+      </header>
     )
 }
