@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import {useNavigate } from 'react-router-dom';
 
 
@@ -7,6 +8,8 @@ import {useNavigate } from 'react-router-dom';
 // }
 async function loginUser(credentials) {
 	
+
+
 	return fetch('http://127.0.0.1:8000/api/login', {
 	  method: 'POST',
 	  headers: {
@@ -14,15 +17,20 @@ async function loginUser(credentials) {
 	  },
 	  body: JSON.stringify(credentials)
 	})
+
 	  .then(data => data.json()
 	//   useNavigate('/cart')
 	  )
+
 
    }
 
 
 
+
   export default function Login({ setToken }) {
+
+
 
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
@@ -36,7 +44,7 @@ async function loginUser(credentials) {
 		  password
 		});
 		setToken(token);
-		console.log(setToken(token));
+
 	  }
 
 
@@ -44,7 +52,10 @@ async function loginUser(credentials) {
     return (
         <React.Fragment>
 
+
    <section  className="blog-banner-area" id="category">
+
+
 		<div  className="container h-100">
 			<div  className="blog-banner">
 				<div  className="text-center">

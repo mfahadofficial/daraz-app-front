@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
+
 import { BrowserRouter as Router, Route, Routes,   } from 'react-router-dom';
 import {Provider} from 'react-redux'
 import store from './components/redux/store';
@@ -20,10 +21,12 @@ import UserContainer from './components/userContainer';
 
 
 function setToken(userToken) {
+
   sessionStorage.setItem('token', JSON.stringify(userToken));
 }
 
 function getToken() {
+
   const tokenString = sessionStorage.getItem('token');
   const userToken = JSON.parse(tokenString);
   let userType = ''
@@ -53,24 +56,29 @@ function App() {
     return <Register setToken={setToken} />
   }
   
+
   return (
     <Provider store = {store}>
     <div className="App">
       <Header/>
      <Router >
         <Routes>
+
           
           <Route exact path="/" element={<Index/>} />
           {/* <Route exact path="login" element={<Login/>} /> */}
           {/* <Route exact path="register" element={<Register/>} /> */}
+
           <Route exact path="single-product-detail" element={<SingleProductDetail/>} />
           <Route exact path="shop" element={<Shop/>} />
           <Route exact path="cart" element={<Cart/>} />
           <Route exact path="checkout" element={<Checkout/>} />
           <Route exact path="tracking-order" element={<TrackingOrder/>} />
           <Route exact path="category" element={<Category/>} />
+
           <Route exact path="user" element={<UserContainer/>} />
          
+
         </Routes>
       </Router>
 

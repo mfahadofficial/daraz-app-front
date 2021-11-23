@@ -166,8 +166,10 @@ export default function Cart() {
                                 <td>
                                     <div  className="cupon_text d-flex align-items-center">
                                         <input type="text" placeholder="Coupon Code"/>
+
                                         {/* <a  className="primary-btn" href="#">Apply</a> */}
                                         <button onClick={handleClick}>Apply</button>
+
                                         <a  className="button" href="#">Have a Coupon?</a>
                                     </div>
                                 </td>

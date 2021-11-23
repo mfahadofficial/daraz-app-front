@@ -15,6 +15,7 @@ export default function Index() {
 
 <main className="site-main">
     
+  
     <section className="hero-banner">
       <div className="container">
         <div className="row no-gutters align-items-center pt-60px">
@@ -34,7 +35,6 @@ export default function Index() {
         </div>
       </div>
     </section>
-
 
     <section className="section-margin mt-0">
       <div className="owl-carousel owl-theme hero-carousel">
@@ -61,32 +61,27 @@ export default function Index() {
         </div>
       </div>
     </section>
+  
 
-
-
+   
     <section className="section-margin calc-60px">
       <div className="container">
         <div className="section-intro pb-60px">
           <p>Popular Item in the market</p>
-          <h2>Trendingsss <span className="section-intro__style">Product</span></h2>
+          <h2>Trending <span className="section-intro__style">Product</span></h2>
         </div>
-       
-                
-                
-
-<PopularItem/>
-
         
+  
+<PopularItem/>
+  
 
-
-
-
+       
       </div>
     </section>
+  
 
 
-
-
+    
     <section className="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
       <div className="container">
         <div className="row">
@@ -101,7 +96,6 @@ export default function Index() {
         </div>
       </div>
     </section>
-
 
     <section className="section-margin calc-60px">
       <div className="container">
@@ -241,8 +235,6 @@ export default function Index() {
       </div>
     </section>
 
-
- 
     <section className="blog">
       <div className="container">
         <div className="section-intro pb-60px">
@@ -305,8 +297,6 @@ export default function Index() {
       </div>
     </section>
 
-
-
     <section className="subscribe-position">
       <div className="container">
         <div className="subscribe text-center">
@@ -315,13 +305,13 @@ export default function Index() {
           <div id="mc_embed_signup">
             <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" className="subscribe-form form-inline mt-5 pt-1">
               <div className="form-group ml-sm-auto">
-                <input className="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email"  />
+                <input className="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" />
                 <div className="info"></div>
               </div>
               <button className="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
-              {/* <div styles="position: absolute; left: -5000px;">
-                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabIndex="-1" value="" type="text"/>
-              </div> */}
+              <div styles="position: absolute; left: -5000px;">
+                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text"/>
+              </div>
 
             </form>
           </div>
@@ -329,7 +319,7 @@ export default function Index() {
         </div>
       </div>
     </section>
-      
+    
 
     
 
