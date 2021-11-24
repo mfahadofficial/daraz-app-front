@@ -63,3 +63,61 @@ export const fetchProducts = () => {
 
     }
 }
+
+
+
+
+export const fetchSingleProduct = (id) => {
+    console.log(id);
+    const productId = id;
+    let url = "http://127.0.0.1:8000/api/products/" +productId ; 
+    console.log(productId);
+
+    return(dispatch)=> {
+
+        dispatch(fetchProductRequest)
+        axios.get(url)
+       .then(response => {
+
+        const Product = response.data
+        dispatch(fetchProductSuccess(Product))
+
+       })
+       .catch( error => {
+
+        const errorMsg = error.message
+        dispatch(fetchProductFailure(errorMsg))
+
+       })
+
+
+    }
+}
+
+export const fetchProductWithCategory = (id) => {
+    console.log(id);
+    const categoryId = id;
+    let url = "http://127.0.0.1:8000/api/search/" +categoryId ; 
+    console.log(categoryId);
+
+    return(dispatch)=> {
+
+        dispatch(fetchProductRequest)
+        axios.get(url)
+       .then(response => {
+
+        const Product = response.data
+        dispatch(fetchProductSuccess(Product))
+
+       })
+       .catch( error => {
+
+        const errorMsg = error.message
+        dispatch(fetchProductFailure(errorMsg))
+
+       })
+
+
+    }
+}
+

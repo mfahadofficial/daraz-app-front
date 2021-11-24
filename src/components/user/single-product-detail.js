@@ -1,7 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux'
+import { fetchSingleProduct } from '../redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 export default function SingleProductDetail() {
+
+	const dispatch = useDispatch()
+	const productData = useSelector(state => state.product.Products)
+	const params = useParams();
+
+  
+	useEffect(() => {
+  
+		console.log(productData, '1');
+  
+		dispatch(fetchSingleProduct(params.id))
+		// fetchProducts() 
+		console.log(productData, '2');
+		
+  
+	}, [])
+  
+	console.log(productData, '3');
 
     return (
         <React.Fragment>
@@ -34,22 +57,22 @@ export default function SingleProductDetail() {
 				<div  className="col-lg-6">
 					<div  className="owl-carousel owl-theme s_Product_carousel">
 						<div  className="single-prd-item">
-							<img  className="img-fluid" src="aromaStyle/img/category/s-p1.jpg" alt=""></img>
+							<img  className="img-fluid" src="/aromaStyle/img/category/s-p1.jpg" alt=""></img>
 						</div>
 						 <div  className="single-prd-item">
-							<img  className="img-fluid" src="aromaStyle/img/category/s-p1.jpg" alt=""></img>
+							<img  className="img-fluid" src="/aromaStyle/img/category/s-p1.jpg" alt=""></img>
 						</div>
 						<div  className="single-prd-item">
-							<img  className="img-fluid" src="aromaStyle/img/category/s-p1.jpg" alt=""></img>
+							<img  className="img-fluid" src="/aromaStyle/img/category/s-p1.jpg" alt=""></img>
 						</div> 
 					</div>
 				</div>
 				<div  className="col-lg-5 offset-lg-1">
 					<div  className="s_product_text">
-						<h3>Faded SkyBlu Denim Jeans</h3>
-						<h2>$149.99</h2>
+						<h3>{productData.name}</h3>
+						<h2>${productData.price}</h2>
 						<ul  className="list">
-							<li><a  className="active" href="#"><span>Category</span> : Household</a></li>
+							<li><Link to={'/category/'+productData.category_id}><span>Category</span> : {productData.category_id}</Link></li>
 							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 						</ul>
 						<p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
@@ -192,7 +215,7 @@ export default function SingleProductDetail() {
 								<div  className="review_item">
 									<div  className="media">
 										<div  className="d-flex">
-											<img src="aromaStyle/img/product/review-1.png" alt=""></img>
+											<img src="/aromaStyle/img/product/review-1.png" alt=""></img>
 										</div>
 										<div  className="media-body">
 											<h4>Blake Ruiz</h4>
@@ -207,7 +230,7 @@ export default function SingleProductDetail() {
 								<div  className="review_item reply">
 									<div  className="media">
 										<div  className="d-flex">
-											<img src="aromaStyle/img/product/review-2.png" alt=""></img>
+											<img src="/aromaStyle/img/product/review-2.png" alt=""></img>
 										</div>
 										<div  className="media-body">
 											<h4>Blake Ruiz</h4>
@@ -222,7 +245,7 @@ export default function SingleProductDetail() {
 								<div  className="review_item">
 									<div  className="media">
 										<div  className="d-flex">
-											<img src="aromaStyle/img/product/review-3.png" alt=""></img>
+											<img src="/aromaStyle/img/product/review-3.png" alt=""></img>
 										</div>
 										<div  className="media-body">
 											<h4>Blake Ruiz</h4>
@@ -301,7 +324,7 @@ export default function SingleProductDetail() {
 								<div  className="review_item">
 									<div  className="media">
 										<div  className="d-flex">
-											<img src="aromaStyle/img/product/review-1.png" alt=""></img>
+											<img src="/aromaStyle/img/product/review-1.png" alt=""></img>
 										</div>
 										<div  className="media-body">
 											<h4>Blake Ruiz</h4>
@@ -319,7 +342,7 @@ export default function SingleProductDetail() {
 								<div  className="review_item">
 									<div  className="media">
 										<div  className="d-flex">
-											<img src="aromaStyle/img/product/review-2.png" alt=""></img>
+											<img src="/aromaStyle/img/product/review-2.png" alt=""></img>
 										</div>
 										<div  className="media-body">
 											<h4>Blake Ruiz</h4>
@@ -337,7 +360,7 @@ export default function SingleProductDetail() {
 								<div  className="review_item">
 									<div  className="media">
 										<div  className="d-flex">
-											<img src="aromaStyle/img/product/review-3.png" alt=""></img>
+											<img src="/aromaStyle/img/product/review-3.png" alt=""></img>
 										</div>
 										<div  className="media-body">
 											<h4>Blake Ruiz</h4>
@@ -403,21 +426,21 @@ export default function SingleProductDetail() {
         <div  className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div  className="single-search-product-wrapper">
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-1.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-1.png" alt=""></img></a>
               <div  className="desc">
                   <a href="#"  className="title">Gray Coffee Cup</a>
                   <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-2.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-2.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-3.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-3.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
@@ -429,21 +452,21 @@ export default function SingleProductDetail() {
         <div  className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div  className="single-search-product-wrapper">
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-4.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-4.png" alt=""></img></a>
               <div  className="desc">
                   <a href="#"  className="title">Gray Coffee Cup</a>
                   <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-5.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-5.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-6.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-6.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
@@ -455,21 +478,21 @@ export default function SingleProductDetail() {
         <div  className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div  className="single-search-product-wrapper">
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-7.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-7.png" alt=""></img></a>
               <div  className="desc">
                   <a href="#"  className="title">Gray Coffee Cup</a>
                   <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-8.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-8.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-9.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-9.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
@@ -481,21 +504,21 @@ export default function SingleProductDetail() {
         <div  className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div  className="single-search-product-wrapper">
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-1.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-1.png" alt=""></img></a>
               <div  className="desc">
                   <a href="#"  className="title">Gray Coffee Cup</a>
                   <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-2.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-2.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-3.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-3.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>

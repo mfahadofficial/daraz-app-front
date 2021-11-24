@@ -1,7 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux'
+import { fetchProductWithCategory } from '../redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
 
 
 export default function Category() {
+
+  const dispatch = useDispatch()
+	const productData = useSelector(state => state.product.Products)
+	const params = useParams();
+
+  useEffect(() => {
+  
+		console.log(productData, '1');
+  
+		dispatch(fetchProductWithCategory(params.id))
+		// fetchProducts() 
+		console.log(productData, '2');
+		
+  
+	}, [])
+  
+	console.log(productData, '3');
+
+
 
     return (
         <React.Fragment>
@@ -117,44 +140,35 @@ export default function Category() {
 
           <section  className="lattest-product-area pb-40 category-list">
             <div  className="row">
-              <div  className="col-md-6 col-lg-4">
+
+
+
+
+
+
+
+
+            {productData.map((product) => (
+       
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div  className="col-md-6 col-lg-4">
                 <div  className="card text-center card-product">
                   <div  className="card-product__img">
-                    <img  className="card-img" src="aromaStyle/img/product/product1.png" alt=""></img>
-                    <ul  className="card-product__imgOverlay">
-                      <li><button><i  className="ti-search"></i></button></li>
-                      <li><button><i  className="ti-shopping-cart"></i></button></li>
-                      <li><button><i  className="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div  className="card-body">
-                    <p>Accessories</p>
-                    <h4  className="card-product__title"><a href="#">Quartz Belt Watch</a></h4>
-                    <p  className="card-product__price">$150.00</p>
-                  </div>
-                </div>
-              </div>
-              <div  className="col-md-6 col-lg-4">
-                <div  className="card text-center card-product">
-                  <div  className="card-product__img">
-                    <img  className="card-img" src="aromaStyle/img/product/product2.png" alt=""></img>
-                    <ul  className="card-product__imgOverlay">
-                      <li><button><i  className="ti-search"></i></button></li>
-                      <li><button><i  className="ti-shopping-cart"></i></button></li>
-                      <li><button><i  className="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div  className="card-body">
-                    <p>Beauty</p>
-                    <h4  className="card-product__title"><a href="#">Women Freshwash</a></h4>
-                    <p  className="card-product__price">$150.00</p>
-                  </div>
-                </div>
-              </div>
-              <div  className="col-md-6 col-lg-4">
-                <div  className="card text-center card-product">
-                  <div  className="card-product__img">
-                    <img  className="card-img" src="aromaStyle/img/product/product3.png" alt=""></img>
+                    <img  className="card-img" src="/aromaStyle/img/product/product3.png" alt=""></img>
                     <ul  className="card-product__imgOverlay">
                       <li><button><i  className="ti-search"></i></button></li>
                       <li><button><i  className="ti-shopping-cart"></i></button></li>
@@ -164,112 +178,19 @@ export default function Category() {
                   <div  className="card-body">
                     <p>Decor</p>
                     <h4  className="card-product__title"><a href="#">Room Flash Light</a></h4>
-                    <p  className="card-product__price">$150.00</p>
+                    <p  className="card-product__price">{product.price}$150.00</p>
                   </div>
                 </div>
               </div>
-              <div  className="col-md-6 col-lg-4">
-                <div  className="card text-center card-product">
-                  <div  className="card-product__img">
-                    <img  className="card-img" src="aromaStyle/img/product/product4.png" alt=""></img>
-                    <ul  className="card-product__imgOverlay">
-                      <li><button><i  className="ti-search"></i></button></li>
-                      <li><button><i  className="ti-shopping-cart"></i></button></li>
-                      <li><button><i  className="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div  className="card-body">
-                    <p>Decor</p>
-                    <h4  className="card-product__title"><a href="#">Room Flash Light</a></h4>
-                    <p  className="card-product__price">$150.00</p>
-                  </div>
-                </div>
-              </div>
-              <div  className="col-md-6 col-lg-4">
-                <div  className="card text-center card-product">
-                  <div  className="card-product__img">
-                    <img  className="card-img" src="aromaStyle/img/product/product5.png" alt=""></img>
-                    <ul  className="card-product__imgOverlay">
-                      <li><button><i  className="ti-search"></i></button></li>
-                      <li><button><i  className="ti-shopping-cart"></i></button></li>
-                      <li><button><i  className="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div  className="card-body">
-                    <p>Accessories</p>
-                    <h4  className="card-product__title"><a href="#">Man Office Bag</a></h4>
-                    <p  className="card-product__price">$150.00</p>
-                  </div>
-                </div>
-              </div>
-              <div  className="col-md-6 col-lg-4">
-                <div  className="card text-center card-product">
-                  <div  className="card-product__img">
-                    <img  className="card-img" src="aromaStyle/img/product/product6.png" alt=""></img>
-                    <ul  className="card-product__imgOverlay">
-                      <li><button><i  className="ti-search"></i></button></li>
-                      <li><button><i  className="ti-shopping-cart"></i></button></li>
-                      <li><button><i  className="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div  className="card-body">
-                    <p>Kids Toy</p>
-                    <h4  className="card-product__title"><a href="#">Charging Car</a></h4>
-                    <p  className="card-product__price">$150.00</p>
-                  </div>
-                </div>
-              </div>
-              <div  className="col-md-6 col-lg-4">
-                <div  className="card text-center card-product">
-                  <div  className="card-product__img">
-                    <img  className="card-img" src="aromaStyle/img/product/product7.png" alt=""></img>
-                    <ul  className="card-product__imgOverlay">
-                      <li><button><i  className="ti-search"></i></button></li>
-                      <li><button><i  className="ti-shopping-cart"></i></button></li>
-                      <li><button><i  className="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div  className="card-body">
-                    <p>Accessories</p>
-                    <h4  className="card-product__title"><a href="#">Blutooth Speaker</a></h4>
-                    <p  className="card-product__price">$150.00</p>
-                  </div> 
-                </div>
-              </div>
-              <div  className="col-md-6 col-lg-4">
-                <div  className="card text-center card-product">
-                  <div  className="card-product__img">
-                    <img  className="card-img" src="aromaStyle/img/product/product8.png" alt=""></img>
-                    <ul  className="card-product__imgOverlay">
-                      <li><button><i  className="ti-search"></i></button></li>
-                      <li><button><i  className="ti-shopping-cart"></i></button></li>
-                      <li><button><i  className="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div  className="card-body">
-                    <p>Kids Toy</p>
-                    <h4  className="card-product__title"><a href="#">Charging Car</a></h4>
-                    <p  className="card-product__price">$150.00</p>
-                  </div>
-                </div>
-              </div>
-              <div  className="col-md-6 col-lg-4">
-                <div  className="card text-center card-product">
-                  <div  className="card-product__img">
-                    <img  className="card-img" src="aromaStyle/img/product/product1.png" alt=""></img>
-                    <ul  className="card-product__imgOverlay">
-                      <li><button><i  className="ti-search"></i></button></li>
-                      <li><button><i  className="ti-shopping-cart"></i></button></li>
-                      <li><button><i  className="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div  className="card-body">
-                    <p>Accessories</p>
-                    <h4  className="card-product__title"><a href="#">Quartz Belt Watch</a></h4>
-                    <p  className="card-product__price">$150.00</p>
-                  </div>
-                </div>
-              </div>
+
+))}
+
+
+
+
+              
+
+
             </div>
           </section>
     
@@ -289,21 +210,21 @@ export default function Category() {
         <div  className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div  className="single-search-product-wrapper">
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-1.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-1.png" alt=""></img></a>
               <div  className="desc">
                   <a href="#"  className="title">Gray Coffee Cup</a>
                   <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-2.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-2.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-3.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-3.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
@@ -315,21 +236,21 @@ export default function Category() {
         <div  className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div  className="single-search-product-wrapper">
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-4.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-4.png" alt=""></img></a>
               <div  className="desc">
                   <a href="#"  className="title">Gray Coffee Cup</a>
                   <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-5.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-5.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-6.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-6.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
@@ -341,21 +262,21 @@ export default function Category() {
         <div  className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div  className="single-search-product-wrapper">
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-7.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-7.png" alt=""></img></a>
               <div  className="desc">
                   <a href="#"  className="title">Gray Coffee Cup</a>
                   <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-8.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-8.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-9.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-9.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
@@ -367,21 +288,21 @@ export default function Category() {
         <div  className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div  className="single-search-product-wrapper">
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-1.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-1.png" alt=""></img></a>
               <div  className="desc">
                   <a href="#"  className="title">Gray Coffee Cup</a>
                   <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-2.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-2.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>
               </div>
             </div>
             <div  className="single-search-product d-flex">
-              <a href="#"><img src="aromaStyle/img/product/product-sm-3.png" alt=""></img></a>
+              <a href="#"><img src="/aromaStyle/img/product/product-sm-3.png" alt=""></img></a>
               <div  className="desc">
                 <a href="#"  className="title">Gray Coffee Cup</a>
                 <div  className="price">$170.00</div>

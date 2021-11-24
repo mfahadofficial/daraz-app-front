@@ -69,12 +69,12 @@ function App() {
           {/* <Route exact path="login" element={<Login/>} /> */}
           {/* <Route exact path="register" element={<Register/>} /> */}
 
-          <Route exact path="single-product-detail" element={<SingleProductDetail/>} />
+          <Route exact path="single-product-detail/:id" element={<SingleProductDetail/>} />
           <Route exact path="shop" element={<Shop/>} />
           <Route exact path="cart" element={<Cart/>} />
           <Route exact path="checkout" element={<Checkout/>} />
           <Route exact path="tracking-order" element={<TrackingOrder/>} />
-          <Route exact path="category" element={<Category/>} />
+          <Route exact path="category/:id" element={<Category/>} />
 
           <Route exact path="user" element={<UserContainer/>} />
          
