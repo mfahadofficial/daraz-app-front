@@ -1,9 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux'
+import { fetchProducts } from './../redux'
+import { useSelector, useDispatch } from 'react-redux';
+
 
 
 import PopularItem  from './popularItem'
 
 export default function Index() {
+  
+
+  const dispatch = useDispatch()
+  const productData = useSelector(state => state.product.Products)
+
+  useEffect(() => {
+
+      console.log(productData, '1');
+
+      dispatch(fetchProducts())
+      // fetchProducts() 
+      console.log(productData, '2');
+      
+
+  }, [])
+
+  console.log(productData, '3');
 
 
 
@@ -70,13 +91,13 @@ export default function Index() {
           <p>Popular Item in the market</p>
           <h2>Trending <span className="section-intro__style">Product</span></h2>
         </div>
-        <div className="row">
+        
         
   
-<PopularItem/>
+<PopularItem  productData={productData} />
   
 
-</div>
+
       </div>
     </section>
   

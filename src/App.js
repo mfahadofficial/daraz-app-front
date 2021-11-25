@@ -18,6 +18,8 @@ import TrackingOrder from './components/User/tracking-order';
 import Category from './components/User/category';
 import SingleProductDetail from './components/User/single-product-detail';
 import UserContainer from './components/userContainer';
+import AddProduct from './components/Vendor/Product/addProduct';
+import AddCategory from './components/Vendor/Category/addCategory';
 
 
 function setToken(userToken) {
@@ -75,6 +77,9 @@ function App() {
           <Route exact path="checkout" element={<Checkout/>} />
           <Route exact path="tracking-order" element={<TrackingOrder/>} />
           <Route exact path="category/:id" element={<Category/>} />
+          <Route exact path="addProduct" element={<AddProduct/>} />
+          <Route exact path="addCategory" element={<AddCategory/>} />
+
 
           <Route exact path="user" element={<UserContainer/>} />
          

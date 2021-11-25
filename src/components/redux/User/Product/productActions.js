@@ -94,11 +94,12 @@ export const fetchSingleProduct = (id) => {
     }
 }
 
-export const fetchProductWithCategory = (id) => {
-    console.log(id);
-    const categoryId = id;
-    let url = "http://127.0.0.1:8000/api/search/" +categoryId ; 
-    console.log(categoryId);
+
+export const fetchProductWithCategory = (param) => {
+    console.log(param);
+    const productParam = param;
+    let url = "http://127.0.0.1:8000/api/search/" +productParam ; 
+    console.log(productParam);
 
     return(dispatch)=> {
 
@@ -112,6 +113,31 @@ export const fetchProductWithCategory = (id) => {
        })
        .catch( error => {
 
+        const errorMsg = error.message
+        dispatch(fetchProductFailure(errorMsg))
+
+       })
+
+
+    }
+}
+
+export const createProduct = (name, price,detail,category_id,user_id,image) => {
+
+    return(dispatch)=> {
+        axios.post('http://127.0.0.1:8000/api/products', {
+            name,
+            price,
+            detail,
+            user_id,
+            category_id
+            
+        })
+       .then(response => {
+        const products = response.data
+        dispatch(fetchProductSuccess(products))
+       })
+       .catch( error => {
         const errorMsg = error.message
         dispatch(fetchProductFailure(errorMsg))
 

@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux'
 import { fetchProductWithCategory } from '../redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 
 
 export default function Category() {
-
+  const [name, setName] = useState('');
   const dispatch = useDispatch()
 	const productData = useSelector(state => state.product.Products)
 	const params = useParams();
 
+  const onSearch = () => {
+    console.log(name);
+    dispatch(fetchProductWithCategory(name)) 
+}
+
   useEffect(() => {
-  
 		console.log(productData, '1');
-  
-		dispatch(fetchProductWithCategory(params.id))
-		// fetchProducts() 
-		console.log(productData, '2');
-		
+		dispatch(fetchProductWithCategory(params.id)) 
+		console.log(productData, '2');	
   
 	}, [])
   
@@ -129,10 +129,11 @@ export default function Category() {
               </select>
             </div>
             <div>
+              
               <div  className="input-group filter-bar-search">
-                <input type="text" placeholder="Search"/>
+                <input type="text" placeholder="Search" onChange={(e) => setName(e.target.value)}/>
                 <div  className="input-group-append">
-                  <button type="button"><i  className="ti-search"></i></button>
+                  <button type="button" onClick={onSearch}><i  className="ti-search"></i></button>
                 </div>
               </div>
             </div>
@@ -142,28 +143,8 @@ export default function Category() {
             <div  className="row">
 
 
-
-
-
-
-
-
             {productData.map((product) => (
        
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <div  className="col-md-6 col-lg-4">
                 <div  className="card text-center card-product">
@@ -177,18 +158,13 @@ export default function Category() {
                   </div>
                   <div  className="card-body">
                     <p>Decor</p>
-                    <h4  className="card-product__title"><a href="#">Room Flash Light</a></h4>
-                    <p  className="card-product__price">{product.price}$150.00</p>
+                    <h4  className="card-product__title"><a href="#">{product.name}</a></h4>
+                    <p  className="card-product__price">${product.price}.00</p>
                   </div>
                 </div>
               </div>
 
 ))}
-
-
-
-
-              
 
 
             </div>

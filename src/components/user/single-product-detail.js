@@ -72,6 +72,7 @@ export default function SingleProductDetail() {
 						<h3>{productData.name}</h3>
 						<h2>${productData.price}</h2>
 						<ul  className="list">
+						
 							<li><Link to={'/category/'+productData.category_id}><span>Category</span> : {productData.category_id}</Link></li>
 							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 						</ul>
