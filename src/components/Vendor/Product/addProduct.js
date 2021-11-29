@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { useSelector, useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Route, useNavigate , Routes,   } from 'react-router-dom';
+import { getToken } from '../../common/authCheck';
 
 
 import { createProduct } from '../../redux';
@@ -8,6 +10,15 @@ import { fetchCategories } from '../../redux';
 
 
 export default function AddProduct() {
+
+
+	const tokenObj = getToken();
+	const curUrl = window.location.pathname
+	const userType = tokenObj.userType;
+	const token = tokenObj.userToken;
+	console.log(userType);
+
+
     const dispatch = useDispatch()
 
     const [name, setName] = useState('');
@@ -17,21 +28,24 @@ export default function AddProduct() {
     const [User_id, setUser_id] = useState('12');
     const [image, setImage] = useState('');
 
+	let navigate = useNavigate();
+
     const categorytData = useSelector(state => state.category.Categories)
 
+	useEffect(() => {
 
+		if(userType !== 2 &&  curUrl == '/addProduct' ) {
+			console.log(curUrl);
+			navigate('/');
+		  }
+    
+		dispatch(fetchCategories())
+	  
+	}, [])
+	console.log(categorytData, '3');
     const addProduct = () => {
         dispatch(createProduct(name, price,detail,category_id,User_id,image))
     }
-
-    const getCategory = () => {
-        dispatch(fetchCategories()) 
-        console.log(categorytData);
-    }
-
-
-     console.log(categorytData);
-
 
     return (
         <React.Fragment>
@@ -61,14 +75,17 @@ export default function AddProduct() {
                             <div  className="col-md-12 form-group">
                                 <input type="text"  className="form-control" id="detail" name="detail" placeholder="Detail" onChange={(e) => setDetail(e.target.value)}/>
                             </div>
-                            <select onClick={getCategory} className="col-md-6 form-group">
-                            <option value="N/A">Category</option>
 
+							<div  className="col-md-12 form-group selectDiv">
+                            <select   className="col-md-6 form-group selectShow" >
+                            <option value="N/A">Category</option>
                             {categorytData?.map((category) => (
                                 <option value="{category.id}">{category.categoryType}</option>
                             ))}
 
                             </select >
+							</div>
+
                             <div  className="col-md-12 form-group">
 								<input type="file"  className="form-control" id="image" name="image" placeholder="Image" onChange={(e) => setImage(e.target.value)}/>
 							</div>

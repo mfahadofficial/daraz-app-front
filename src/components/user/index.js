@@ -3,40 +3,29 @@ import { connect } from 'react-redux'
 import { fetchProducts } from './../redux'
 import { useSelector, useDispatch } from 'react-redux';
 
-
-
 import PopularItem  from './popularItem'
 
 export default function Index() {
   
-
   const dispatch = useDispatch()
   const productData = useSelector(state => state.product.Products)
 
   useEffect(() => {
 
       console.log(productData, '1');
-
       dispatch(fetchProducts())
-      // fetchProducts() 
       console.log(productData, '2');
-      
-
+    
   }, [])
 
   console.log(productData, '3');
-
-
-
   
   return (
         
         <React.Fragment>
-
-
+          
 <main className="site-main">
-    
-  
+      
     <section className="hero-banner">
       <div className="container">
         <div className="row no-gutters align-items-center pt-60px">
@@ -82,9 +71,7 @@ export default function Index() {
         </div>
       </div>
     </section>
-  
 
-   
     <section className="section-margin calc-60px">
       <div className="container">
         <div className="section-intro pb-60px">
@@ -92,19 +79,10 @@ export default function Index() {
           <h2>Trending <span className="section-intro__style">Product</span></h2>
         </div>
         
-        
-  
 <PopularItem  productData={productData} />
   
-
-
       </div>
     </section>
-  
-
-
-    
-  
 
     <section className="section-margin calc-60px">
       <div className="container">
@@ -242,18 +220,9 @@ export default function Index() {
           </div>
         </div>
       </div>
-    </section>
-
-
-
-
-    
-
-    
+    </section>   
 
   </main>
-
-
 
             </React.Fragment>
     )

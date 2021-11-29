@@ -5,16 +5,11 @@ import { Link } from 'react-router-dom';
 export default function PopularItem(props) {
 
 console.log(props.productData);
-  return (
-    
+  return (   
     <div className="row">
  
     {props.productData.map((product) => (
    
- 
-
-
-       
           <div className="col-md-6 col-lg-4 col-xl-3">
             <div className="card text-center card-product">
               <div className="card-product__img">
@@ -36,8 +31,5 @@ console.log(props.productData);
    ))}
    </div>
 )
-
-  
-
 
 }

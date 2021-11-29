@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {useNavigate } from 'react-router-dom';
+import { getToken } from './authCheck';
 
 
 // function handleClick() {
@@ -8,9 +9,8 @@ import {useNavigate } from 'react-router-dom';
 // }
 async function loginUser(credentials) {
 	
-
-
-	return fetch('http://127.0.0.1:8000/api/login', {
+	
+	return fetch('https://b0a8-124-29-208-249.ngrok.io/api/login', {
 	  method: 'POST',
 	  headers: {
 		'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ async function loginUser(credentials) {
 	})
 
 	  .then(data => data.json()
-	//   useNavigate('/cart')
+	  
 	  )
 
 
@@ -29,13 +29,28 @@ async function loginUser(credentials) {
 
 
   export default function Login({ setToken }) {
+	  
+	  let navigate = useNavigate();
+
+	const tokenObj = getToken();
+	const curUrl = window.location.pathname
+	const userType = tokenObj.userType;
+	const token = tokenObj.userToken;
+	console.log(userType);
+	console.log(token);
+
+	useEffect(() => {
+		console.log(token);
+		if(token){
+		navigate('/');
+		}
+		  
+			}, [])
 
 
 
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
-
-
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -44,22 +59,22 @@ async function loginUser(credentials) {
 		  password
 		});
 		setToken(token);
+		
 
 	  }
+
+
 
 
 
     return (
         <React.Fragment>
 
-
-   <section  className="blog-banner-area" id="category">
-
-
+	   
 		<div  className="container h-100">
 			<div  className="blog-banner">
 				<div  className="text-center">
-					<h1>Login / Register</h1>
+					<h1>Login </h1>
 					<nav aria-label="breadcrumb"  className="banner-breadcrumb">
             <ol  className="breadcrumb">
               <li  className="breadcrumb-item"><a href="#">Home</a></li>
@@ -69,7 +84,7 @@ async function loginUser(credentials) {
 				</div>
 			</div>
     </div>
-	</section>
+
 
     <section  className="login_box_area section-margin">
 		<div  className="container">
@@ -91,7 +106,7 @@ async function loginUser(credentials) {
 								<input type="text"  className="form-control" placeholder="email" onChange={e => setEmail(e.target.value)}  />
 							</div>
 							<div  className="col-md-12 form-group">
-								<input type="text"  className="form-control" id="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+								<input type="password"  className="form-control" id="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
 							</div>
 							<div  className="col-md-12 form-group">
 								<div  className="creat_account">

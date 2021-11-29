@@ -1,10 +1,16 @@
 import axios from 'axios';
+import { BASE_URL, BASE_URL_LIVE } from '../../../common/constants.js';
+import { getToken } from '../../../common/authCheck.js';
 
 import { 
     FETCH_PRODUCT_REQUEST,
     FETCH_PRODUCT_SUCCESS,
-    FETCH_PRODUCT_FAILURE
+    FETCH_PRODUCT_FAILURE,
+    FETCH_SINGLE_PRODUCT_SUCCESS,
+    FETCH_VENDOR_PRODUCT_SUCCESS
 } from './productType.js';
+
+const baseURL = BASE_URL_LIVE;
 
 
 export const fetchProductRequest = () => {
@@ -28,6 +34,31 @@ export const fetchProductSuccess = Products => {
     }
 }
 
+export const fetchSingleProductSuccess = product => {
+
+    return {
+
+        type: FETCH_SINGLE_PRODUCT_SUCCESS,
+        payload: product
+
+
+    }
+}
+
+
+export const fetchVendorProductSuccess = product => {
+
+    return {
+
+        type: FETCH_VENDOR_PRODUCT_SUCCESS,
+        payload: product
+
+
+    }
+}
+
+
+
 export const fetchProductFailure = error => {
 
     return {
@@ -43,10 +74,12 @@ export const fetchProductFailure = error => {
 
 export const fetchProducts = () => {
 
+    let url = baseURL+"/products"; 
+
     return(dispatch)=> {
 
         dispatch(fetchProductRequest)
-        axios.get('http://127.0.0.1:8000/api/products')
+        axios.get(url)
        .then(response => {
 
         const Products = response.data
@@ -70,7 +103,7 @@ export const fetchProducts = () => {
 export const fetchSingleProduct = (id) => {
     console.log(id);
     const productId = id;
-    let url = "http://127.0.0.1:8000/api/products/" +productId ; 
+    let url = baseURL+"/products/"+productId; 
     console.log(productId);
 
     return(dispatch)=> {
@@ -79,8 +112,8 @@ export const fetchSingleProduct = (id) => {
         axios.get(url)
        .then(response => {
 
-        const Product = response.data
-        dispatch(fetchProductSuccess(Product))
+        const product = response.data
+        dispatch(fetchSingleProductSuccess(product))
 
        })
        .catch( error => {
@@ -98,7 +131,7 @@ export const fetchSingleProduct = (id) => {
 export const fetchProductWithCategory = (param) => {
     console.log(param);
     const productParam = param;
-    let url = "http://127.0.0.1:8000/api/search/" +productParam ; 
+    let url = baseURL+"/search/"+productParam; 
     console.log(productParam);
 
     return(dispatch)=> {
@@ -122,10 +155,52 @@ export const fetchProductWithCategory = (param) => {
     }
 }
 
-export const createProduct = (name, price,detail,category_id,user_id,image) => {
+
+export const fetchVendorProducts = () => {
+    
+    let url = 'http://127.0.0.1:8000/api/vendorProducts'; 
+
+
+    const tokenObj = getToken();
+	const token = tokenObj.userToken.data.token;
+    console.log(token);
+
+    const AuthStr = 'Bearer '.concat(token); 
+    console.log(AuthStr);
 
     return(dispatch)=> {
-        axios.post('http://127.0.0.1:8000/api/products', {
+
+        dispatch(fetchProductRequest)
+         axios.get(url,{ headers: { Authorization: AuthStr } })
+       .then(response => {
+           console.log('then');
+
+        const Product = response.data
+        dispatch(fetchProductSuccess(Product))
+        // console.log(fetchVendorProductSuccess(Product));
+       })
+       .catch( error => {
+
+        console.log('catch');
+
+
+        const errorMsg = error.message
+        dispatch(fetchProductFailure(errorMsg))
+        console.log(fetchProductFailure(errorMsg));
+
+       })
+
+
+    }
+}
+
+
+
+export const createProduct = (name, price,detail,category_id,user_id,image) => {
+    let url = baseURL+"/products"
+
+    return(dispatch)=> {
+        axios.post(url, {
             name,
             price,
             detail,
@@ -137,13 +212,12 @@ export const createProduct = (name, price,detail,category_id,user_id,image) => {
         const products = response.data
         dispatch(fetchProductSuccess(products))
        })
-       .catch( error => {
-        const errorMsg = error.message
-        dispatch(fetchProductFailure(errorMsg))
-
-       })
+ 
 
 
     }
 }
+
+
+
 

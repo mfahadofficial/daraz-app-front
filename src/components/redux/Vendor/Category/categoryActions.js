@@ -1,10 +1,13 @@
 import axios from 'axios';
+import { BASE_URL, BASE_URL_LIVE } from '../../../common/constants.js';
 
 import { 
     FETCH_CATEGORY_REQUEST,
     FETCH_CATEGORY_SUCCESS,
     FETCH_CATEGORY_FAILURE
 } from './categoryType.js';
+
+const baseURL = BASE_URL_LIVE;
 
 export const fetchCategoryRequest = () => {
 
@@ -41,11 +44,13 @@ export const fetchCategoryFailure = error => {
 
 
 export const fetchCategories = () => {
+     
+    let url = baseURL+"/categories"; 
 
     return(dispatch)=> {
 
         dispatch(fetchCategoryRequest)
-        axios.get('http://127.0.0.1:8000/api/categories')
+        axios.get(url)
        .then(response => {
 
         const Categories = response.data
@@ -66,11 +71,13 @@ export const fetchCategories = () => {
 
 
 export const createCategory = (categoryType) => {
+    // let url = baseURL+"categories/"+productId;
+    let url = baseURL+"/categories/";
 
     return(dispatch)=> {
 
         dispatch(fetchCategoryRequest)
-        axios.post('http://127.0.0.1:8000/api/categories', {
+        axios.post(url, {
             categoryType
             
         })

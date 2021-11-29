@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 export default function SingleProductDetail() {
 
 	const dispatch = useDispatch()
-	const productData = useSelector(state => state.product.Products)
+	const productData = useSelector(state => state.product.Product)
 	const params = useParams();
 
   

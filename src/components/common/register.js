@@ -1,6 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { getToken } from './authCheck';
+import {useNavigate } from 'react-router-dom';
 
 export default function Register() {
+	let navigate = useNavigate();
+
+	const tokenObj = getToken();
+	const curUrl = window.location.pathname
+	const userType = tokenObj.userType;
+	const token = tokenObj.userToken;
+
+
+	useEffect(() => {
+		console.log(token);
+		if(token){
+		navigate('/');
+		}
+		  
+			}, [])
 
     return (
         <React.Fragment>

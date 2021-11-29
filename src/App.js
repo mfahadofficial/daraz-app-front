@@ -20,6 +20,8 @@ import SingleProductDetail from './components/User/single-product-detail';
 import UserContainer from './components/userContainer';
 import AddProduct from './components/Vendor/Product/addProduct';
 import AddCategory from './components/Vendor/Category/addCategory';
+import { getToken } from './components/common/authCheck';
+import MyProducts from './components/Vendor/Product/myProducts';
 
 
 function setToken(userToken) {
@@ -27,19 +29,6 @@ function setToken(userToken) {
   sessionStorage.setItem('token', JSON.stringify(userToken));
 }
 
-function getToken() {
-
-  const tokenString = sessionStorage.getItem('token');
-  const userToken = JSON.parse(tokenString);
-  let userType = ''
-  if (userToken){
-     userType = userToken.data.role_id
-  }
-  
-  console.log(userToken);
-  console.log(userType);
-  return {userToken,userType}
-}
 
 function App() {
   const tokenObj = getToken();
@@ -48,21 +37,15 @@ function App() {
   const token = tokenObj.userToken;
   console.log(userType);
   console.log(token);
-
-
-  if(!token && curUrl == '/login' ) {
-    console.log(curUrl)
-    return <Login setToken={setToken} />
-  }
-  if(!token && curUrl == '/register' ) {
-    return <Register setToken={setToken} />
-  }
   
 
   return (
     <Provider store = {store}>
     <div className="App">
-      <Header/>
+   
+     <Header/>
+
+      
      <Router >
         <Routes>
 
@@ -79,6 +62,9 @@ function App() {
           <Route exact path="category/:id" element={<Category/>} />
           <Route exact path="addProduct" element={<AddProduct/>} />
           <Route exact path="addCategory" element={<AddCategory/>} />
+          <Route exact path="myProducts" element={<MyProducts/>} />
+          <Route exact path="login" element={<Login setToken={setToken}/>} />
+          <Route exact path="register" element={<Register/>} />
 
 
           <Route exact path="user" element={<UserContainer/>} />
@@ -86,8 +72,10 @@ function App() {
 
         </Routes>
       </Router>
-
+ 
       <Footer/>
+
+     
     </div>
      </Provider>
   );

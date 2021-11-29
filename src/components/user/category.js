@@ -143,7 +143,7 @@ export default function Category() {
             <div  className="row">
 
 
-            {productData.map((product) => (
+            {productData?.map((product) => (
        
 
             <div  className="col-md-6 col-lg-4">
